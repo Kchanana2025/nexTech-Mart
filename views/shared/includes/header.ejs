@@ -4,7 +4,11 @@
         <ul>
             <% if(locals.isAuth){ %>
                 <li>
-                    <button>Logout</button>
+                    <form action="/logout" method="POST">
+                        <input type="hidden" name="_csrf" value="<%=locals.csrfToken%>">
+                        <!-- we always send a hidden csrf token with a POST request -->
+                        <button>Logout</button>
+                    </form>
                 </li>
                 <% } %>
         </ul>

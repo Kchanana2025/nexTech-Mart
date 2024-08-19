@@ -1,4 +1,3 @@
-const csrf = require('csurf');
 
 const path = require('path');
 
@@ -32,11 +31,12 @@ app.use(express.urlencoded({ extended: false }));
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
 
-app.use(csrf());
+app.use(csurf());
 //any request which is not a get request i.e it is a post request will have a csrf token attached.(hmara ye middle ware uss token ko check karega)
 
 app.use(addCsrfTokenMiddleware);
 // It is a custom middleware function that you likely created to add the CSRF (Cross-Site Request Forgery) token to your views and route handlers
+
 app.use(checkAuthStatusMiddleware);
 
 app.use(baseRoutes);
